@@ -54,6 +54,8 @@ class Members::HomeController < ApplicationController
     @applications = [] # TODO: Doorkeeper::Application.authorized_for(current_user)
 
     @member.educations.build(:id => '-1') if @member.educations.empty?
+    
+    @cards = CheckoutCard.select(:id, :uuid).where(:member_id => current_user.credentials_id)
   end
 
   def revoke

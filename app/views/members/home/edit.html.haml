@@ -129,6 +129,28 @@
               %br
               %br
               Muteren van reeds afgesloten studies en toevoegen van nieuwe studies kan het bestuur voor je doen, mail naar #{link_to 'bestuur@svsticky.nl', 'mailto:bestuur@svsticky.nl'}. Vergeet niet te opslaan!
+      
+      .card#cards
+        .card-header
+          %i.fa.fa-fw.fa-credit-card
+          Kaarten #TODO translate
+        %ul.list-group
+          - @cards.where(:active => false).each do |card|
+            %li.list-group-item{ :data => { 'uuid' => card.uuid }}
+              %p.uuid= card.uuid
+              .btn-group
+                %button.btn.btn-primary activeer #TODO translate
+                %button.btn.btn-line-primary verwijder #TODO translate
+          - @cards.where(:active => true).each do |card|
+            %li.list-group-item{ :data => { 'uuid' => card.uuid }}
+              %p.uuid= card.uuid
+              .btn-group
+                %button.btn.btn-primary deactiveer #TODO translate
+                %button.btn.btn-line-primary verwijder #TODO translate
+          - if @cards.length == 0
+            %li.list-group-item
+              %p.text-center
+                %em geen kaarten #TODO translate
 
       .card
         .card-header
